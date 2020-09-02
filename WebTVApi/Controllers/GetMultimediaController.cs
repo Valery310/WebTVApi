@@ -19,34 +19,47 @@ namespace WebTVApi
     [ApiController]
     public class GetMultimediaController : ControllerBase
     {
+        //[HttpGet]
+        //public IActionResult Get()//GetVideoContent()
+        //{
+        //    List<List<MultimediaFile>> multimediaFiles = new List<List<MultimediaFile>>();
+        //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Video));
+        //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Photo));
+        //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Document));
+
+        //    var r = System.Text.Json.JsonSerializer.Serialize(multimediaFiles, new JsonSerializerOptions { WriteIndented = true });
+        //    //  var t = System.Text.Json.JsonSerializer.Serialize(multimediaLists.multimediaVideo, new JsonSerializerOptions { WriteIndented = true });
+        //    //   var t1 = System.Text.Json.JsonSerializer.Deserialize<List<MultimediaFile>>(t);
+        //    return Content(r);
+        //}
+        //[HttpGet("{stream}")]
+        //[Route("[controller]/{stream}")]
         [HttpGet]
-        public IActionResult Get()//GetVideoContent()
-        {   
-            List<List<MultimediaFile>> multimediaFiles = new List<List<MultimediaFile>>();
-            multimediaFiles.Add(Multimedia.GetMultimedia(Type.Video));
-            multimediaFiles.Add(Multimedia.GetMultimedia(Type.Photo));
-            multimediaFiles.Add(Multimedia.GetMultimedia(Type.Document));
-
-            var r = System.Text.Json.JsonSerializer.Serialize(multimediaFiles, new JsonSerializerOptions { WriteIndented = true });
-          //  var t = System.Text.Json.JsonSerializer.Serialize(multimediaLists.multimediaVideo, new JsonSerializerOptions { WriteIndented = true });
-         //   var t1 = System.Text.Json.JsonSerializer.Deserialize<List<MultimediaFile>>(t);
-            return Content(r);
-        }
-        [HttpGet("{content}")]
-        public IActionResult Get(string value)//GetVideoContent()
+        public IActionResult Get(string stream, string ip)//GetVideoContent() Get([FromQuery]string stream)
         {
-            List<Url> urlVideo = new List<Url>();
-            List<Url> urlPhoto = new List<Url>();
-            List<Url> urlAnnounce = new List<Url>();
+            //List<List<MultimediaFile>> multimediaFiles = new List<List<MultimediaFile>>();
+            //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Video, value));
+            //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Photo, value));
+            //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Document, value));
+            //var r = System.Text.Json.JsonSerializer.Serialize(multimediaFiles, new JsonSerializerOptions { WriteIndented = true });
+            //return Content(r);
 
-            if (System.IO.File.Exists($"./Media/Video/{value}"))
+            string path = $"./Media/{stream}/Video/Программа шифрования текста. Урок #3, C# для начинающих.mp4";
+
+            if (System.IO.File.Exists(path))
             {
-                var file = System.IO.File.Open($"./Media/Video/{value}", FileMode.Open, FileAccess.Read, FileShare.Read);
+                var file = System.IO.File.Open($"./Media/{stream}/Video/Программа шифрования текста. Урок #3, C# для начинающих.mp4", FileMode.Open, FileAccess.Read, FileShare.Read);
                 return new FileStreamResult(file, new MediaTypeHeaderValue("video/mp4").MediaType);
             }
 
 
             return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("/update")]
+        public void Update(string stream, string ip)
+        {
         }
 
         // GET: api/<GetMultimedia>

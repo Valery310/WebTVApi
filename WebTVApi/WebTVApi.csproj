@@ -5,9 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Media\Video\" />
-    <Folder Include="Media\Photo\" />
-    <Folder Include="Media\Document\" />
+    <Folder Include="ClientSettings\TV1\" />
+    <Folder Include="ClientSettings\TV2\" />
+    <Folder Include="Media\Stream1\Photo\" />
+    <Folder Include="Media\Stream1\News\" />
+    <Folder Include="Media\Stream1\Statistics\" />
+    <Folder Include="Media\Stream2\" />
   </ItemGroup>
 
   <ItemGroup>

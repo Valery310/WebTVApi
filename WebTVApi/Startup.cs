@@ -46,6 +46,7 @@ namespace WebTVApi
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
