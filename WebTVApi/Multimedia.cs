@@ -19,7 +19,8 @@ namespace WebTVApi
 
     public class MultimediaFile
     {
-       // public Url url { get; set; }
+        // public Url url { get; set; }
+        public int id { get; set; }
         public Type type { get; set; }  
         public string Name { get; set; }
         public string Extension { get; set; } 
@@ -27,6 +28,8 @@ namespace WebTVApi
 
     public static class Multimedia
     {
+        public static int idFiles = 0;
+
         public static void UpdateFiles(List<List<MultimediaFile>> e, string stream)
         {
             e.Clear();
@@ -45,6 +48,8 @@ namespace WebTVApi
                     t.Name = item.Name;
                     t.Extension = item.Extension;
                     t.type = e;
+                    t.id = idFiles;
+                    idFiles++;
                     multimediaFiles.Add(t);
             }
 

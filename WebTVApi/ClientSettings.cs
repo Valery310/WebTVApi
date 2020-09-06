@@ -24,7 +24,8 @@ namespace WebTVApi
         int higthScreen;// Высота в пикселях
         bool downloadContent;//Скачивать ли контент для офайн режима.
         int durationUpdate;// частота проверки обновления настроек клиентом
-
+        //параметр размера окна новостей
+        TypeWork typeWork; //Тип источника. Локальный, по сети, локальный но с заказчкой из сети
 
     }
 
@@ -45,5 +46,12 @@ namespace WebTVApi
         Saturday,
         Sunday,
         Everyday
+    }
+
+    public enum TypeWork
+    {
+        Local,
+        Network,
+        Mixed 
     }
 }

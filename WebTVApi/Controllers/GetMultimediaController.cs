@@ -9,12 +9,18 @@ using System.Security.Policy;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Text;
+using System.Security.Cryptography;
+using System.Web;
+using System.Globalization;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebTVApi
 {
+    
+
     [Route("[controller]")]//[Route("api/[controller]")]
     [ApiController]
     public class GetMultimediaController : ControllerBase
@@ -34,8 +40,10 @@ namespace WebTVApi
         //}
         //[HttpGet("{stream}")]
         //[Route("[controller]/{stream}")]
+        
+
         [HttpGet]
-        public IActionResult Get(string stream, string ip)//GetVideoContent() Get([FromQuery]string stream)
+        public IActionResult Get(string stream, string content, string id, string ip)//GetVideoContent() Get([FromQuery]string stream)
         {
             //List<List<MultimediaFile>> multimediaFiles = new List<List<MultimediaFile>>();
             //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Video, value));
@@ -43,14 +51,42 @@ namespace WebTVApi
             //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Document, value));
             //var r = System.Text.Json.JsonSerializer.Serialize(multimediaFiles, new JsonSerializerOptions { WriteIndented = true });
             //return Content(r);
-
-            string path = $"./Media/{stream}/Video/Программа шифрования текста. Урок #3, C# для начинающих.mp4";
-
-            if (System.IO.File.Exists(path))
+            if (string.IsNullOrWhiteSpace(stream)
+                && string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(content))
             {
-                var file = System.IO.File.Open($"./Media/{stream}/Video/Программа шифрования текста. Урок #3, C# для начинающих.mp4", FileMode.Open, FileAccess.Read, FileShare.Read);
-                return new FileStreamResult(file, new MediaTypeHeaderValue("video/mp4").MediaType);
+                
+                Program.multimediaFiles = new List<List<MultimediaFile>>();
+                Multimedia.UpdateFiles(Program.multimediaFiles, "Stream1");
+               // var r = System.Text.Json.JsonSerializer.Serialize(multimediaFiles, new JsonSerializerOptions { WriteIndented = true });
+                var obj = JsonConvert.SerializeObject(Program.multimediaFiles);
+                return Content(obj);
             }
+            else
+            {
+                string name = "";
+                int _id = Convert.ToInt32(id);
+                foreach (var items in Program.multimediaFiles)
+                {
+                    foreach (var item in items)
+                    {
+                        if (_id==item.id)
+                        {
+                            name = item.Name;
+                            break;
+                        }
+                    }
+                }
+                
+               
+                string path = $"./Media/{stream}/{content}/{name}";//Программа шифрования текста. Урок #3, C# для начинающих.mp4";
+          
+                if (System.IO.File.Exists(path))
+                {
+                    var file = System.IO.File.Open($"./Media/{stream}/{content}/{name}", FileMode.Open, FileAccess.Read, FileShare.Read);///Media/{stream}/{content}/Программа шифрования текста. Урок #3, C# для начинающих.mp4", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    return new FileStreamResult(file, new MediaTypeHeaderValue("video/mp4").MediaType);
+                }
+            }
+          
 
 
             return BadRequest();

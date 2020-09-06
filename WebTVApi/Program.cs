@@ -11,6 +11,8 @@ namespace WebTVApi
 {
     public class Program
     {
+        public static List<List<MultimediaFile>> multimediaFiles;
+
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
