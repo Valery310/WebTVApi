@@ -11,7 +11,7 @@ namespace WebTVApi
 {
     public enum Type 
     {
-        Video,
+        Adv,
         News,
         Photo,
         Statistics
@@ -33,7 +33,7 @@ namespace WebTVApi
         public static void UpdateFiles(List<List<MultimediaFile>> e, string stream)
         {
             e.Clear();
-            e.Add(GetMultimedia(Type.Video, stream));
+            e.Add(GetMultimedia(Type.Adv, stream));
             e.Add(GetMultimedia(Type.Photo, stream));
             e.Add(GetMultimedia(Type.News, stream));
         }

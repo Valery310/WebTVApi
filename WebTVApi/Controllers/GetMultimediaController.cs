@@ -30,7 +30,7 @@ namespace WebTVApi
         //public IActionResult Get()//GetVideoContent()
         //{
         //    List<List<MultimediaFile>> multimediaFiles = new List<List<MultimediaFile>>();
-        //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Video));
+        //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Adv));
         //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Photo));
         //    //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Document));
 
@@ -47,7 +47,7 @@ namespace WebTVApi
         public IActionResult Get(string stream, string content, string id, string ip)//GetVideoContent() Get([FromQuery]string stream)
         {
             //List<List<MultimediaFile>> multimediaFiles = new List<List<MultimediaFile>>();
-            //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Video, value));
+            //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Adv, value));
             //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Photo, value));
             //multimediaFiles.Add(Multimedia.GetMultimedia(Type.Document, value));
             //var r = System.Text.Json.JsonSerializer.Serialize(multimediaFiles, new JsonSerializerOptions { WriteIndented = true });
