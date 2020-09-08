@@ -11,7 +11,7 @@ namespace WebTVApi
 {
     public class Program
     {
-        public static List<List<MultimediaFile>> multimediaFiles;
+        public static List<List<MultimediaFile>> multimediaFiles;//нужен словарь дл€ разграничений плейлистов.   каждой настройке присваиваетс€ свой стрим. ip нужен дл€ авторизации клиентов. “олько добавленный адрес клиента может получить ответ.
 
         public static void Main(string[] args)
         {

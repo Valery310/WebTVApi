@@ -13,6 +13,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Web;
 using System.Globalization;
+using System.Net;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -76,8 +77,7 @@ namespace WebTVApi
                         }
                     }
                 }
-                
-               
+
                 string path = $"./Media/{stream}/{content}/{name}";//Программа шифрования текста. Урок #3, C# для начинающих.mp4";
           
                 if (System.IO.File.Exists(path))
